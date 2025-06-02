@@ -6,5 +6,7 @@ function grids16(){
         cont.appendChild(div)
 
     }
-
+}
+function colorChange(){
+    let grid = document.querySelector(".grids");
 }

@@ -7,14 +7,14 @@ body{
     height: 80vh;
     width: 80vh;
     border: 2px red solid;
+    display: flex;
+    flex-wrap: wrap;
+    gap :2px;
 }
 .grid{
     width: 40px;
     height: 40px;
     border: 2px black solid;
-    display: inline-block;
-}
-.grid:hover{
-    background-color: blue;
+    box-sizing: border-box;
 }
 
