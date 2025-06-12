@@ -1,18 +1,57 @@
+init();
+const reset = document.getElementById("bt");
+reset.addEventListener("click", changeGrid);
+createGrid();
 
-const containerSize = 1000; // Size of the container in pixels
-const cont = document.querySelector("#container");
-const gridSize = 50; // Number of grid items
-cont.style.width = `${containerSize}px`;
-cont.style.height = `${containerSize}px`;
+function init(){
+    //Adjusting the dimonsions of the container 
+    window.containerSize = 600;
+    window.container = document.getElementById("container");
+    container.style.width = `${containerSize}px`
+    container.style.height = `${containerSize}px`
+    window.gridnum = 16 ; //the default grids number
+    const reset = document.getElementById("bt");
+    reset.addEventListener("click", changeGrid)
 
-function CreateGrid(){
-    const gridnum = (containerSize / gridSize)**2; // Calculate the size of each grid item
-    for (let i = 0 ; i < gridnum ; i++){
+
+
+}
+
+function createGrid(){
+    let gn = gridnum**2
+    let nb = 0
+    let gridSize = Math.trunc(containerSize/gridnum);
+    let rest = Math.trunc(containerSize - (gridSize * gridnum));
+
+    container.style.width = `${rest + containerSize}px`
+    console.log(Math.trunc(rest))
+
+    for (let i = 0 ; i < gn ; i++){ 
+        nb++
         let div = document.createElement("div");
-        div.style.width = gridSize + "px";
-        div.style.height = gridSize + "px";
+        div.style.height = `${gridSize}px`;
+        div.style.width = `${gridSize}px`;
         div.classList.add("grid");
-        cont.appendChild(div)
-        //document.addEventListener("mouseover", colorChange )
+        div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = "grey"
+        })
+        container.appendChild(div);
     }
 }
+function changeGrid(){
+    const gridClass = document.querySelectorAll(".grid");
+    for (let l = 0; l < gridClass.length; l++) {
+        gridClass[l].style.backgroundColor = "white";
+        
+    }
+    g = prompt("Select grid numbers between 1 - 100")
+    if (isNaN(g) || g > 100 || g < 1){
+        alert("Select grid numbers between 1 - 100 !!!!!!")
+    }else{
+        window.gridnum = g;
+        console.log(window.gridnum)
+    }
+}
+
+
+
