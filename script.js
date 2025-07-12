@@ -1,6 +1,8 @@
 init();
 const reset = document.getElementById("bt");
+const rgbb = document.getElementById("rgb");
 reset.addEventListener("click", changeGrid);
+rgbb.addEventListener("click" , randomColor);
 createGrid();
 
 function init(){
@@ -11,7 +13,10 @@ function init(){
     container.style.height = `${containerSize}px`
     window.gridnum = 16 ; //the default grids number
     const reset = document.getElementById("bt");
-    reset.addEventListener("click", changeGrid)
+    reset.addEventListener("click", changeGrid);
+    window.penColor = "grey"
+    const rgbb = document.getElementById("rgb");
+    window.mode = "normal";
 
 
 
@@ -33,7 +38,10 @@ function createGrid(){
         div.style.width = `${gridSize}px`;
         div.classList.add("grid");
         div.addEventListener("mouseover", () => {
-            div.style.backgroundColor = "grey"
+            div.style.backgroundColor = penColor;
+            if(penColor != "grey"){
+                randomColor();
+            }
         })
         container.appendChild(div);
     }
@@ -60,6 +68,15 @@ function removeGrid(){
     for (let l = 0; l < gridClass.length; l++) {
         gridClass[l].remove();
     }
+}
+
+function randomColor(){
+    let min = 0;
+    let max = 255;
+    let r = Math.trunc((Math.random()-min)*max);
+    let g = Math.trunc((Math.random()-min)*max);
+    let b = Math.trunc((Math.random()-min)*max);
+    window.penColor = `rgb(${r},${g},${b})`;
 }
 
 
