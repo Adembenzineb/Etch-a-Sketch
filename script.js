@@ -5,7 +5,7 @@ createGrid();
 
 function init(){
     //Adjusting the dimonsions of the container 
-    window.containerSize = 600;
+    window.containerSize = 700; //the default container size
     window.container = document.getElementById("container");
     container.style.width = `${containerSize}px`
     container.style.height = `${containerSize}px`
@@ -49,7 +49,16 @@ function changeGrid(){
         alert("Select grid numbers between 1 - 100 !!!!!!")
     }else{
         window.gridnum = g;
+        removeGrid()
+        createGrid();
         console.log(window.gridnum)
+    }
+}
+
+function removeGrid(){
+    const gridClass = document.querySelectorAll(".grid");
+    for (let l = 0; l < gridClass.length; l++) {
+        gridClass[l].remove();
     }
 }
 
